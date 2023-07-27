@@ -1,0 +1,47 @@
+@use 'globals' as *;
+
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  // https://ishadeed.com/article/new-viewport-units/
+  min-height: 100dvh;
+  background-color: var(--background-color);
+
+  > * {
+    //  padding: calc(0.5rem + 3vw);
+    padding: clamp(0.75rem, 0.5rem + 3vw, 2rem);
+  }
+}
+
+.site-content {
+  flex-grow: 1;
+  max-width: rem(1024);
+  width: 100%;
+  margin-inline: auto;
+  display: grid;
+  gap: var(--size-fluid-2);
+
+  @media ($large) {
+    grid-template-columns: 1fr 20rem;
+  }
+}
+
+.main {
+  /* Macht Element zum "Container" für Kindelemente, die mit @container die 
+  width des Containers abfragen.  */
+  container-type: inline-size;
+}
+
+.sidebar {
+  container-type: inline-size;
+  @media ($large) {
+    border-left: 2px solid var(--text-color);
+    padding-inline: var(--size-fluid-2);
+  }
+}
+
+.site-header,
+.site-footer {
+  color: var(--header-footer-color);
+  background-color: var(--header-footer-background-color);
+}

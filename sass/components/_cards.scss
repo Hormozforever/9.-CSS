@@ -1,0 +1,29 @@
+.cards {
+  &__button {
+    transition: scale 0.4s var(--ease-elastic-5);
+    &:hover,
+    &:focus-visible {
+      // Alte Schreibweise:
+      // transform: scale(1.5);
+      scale: 1.5;
+    }
+  }
+
+  &__gamefield {
+    display: grid;
+    grid-gap: var(--size-fluid-2);
+    grid-template-columns: repeat(4, 5rem);
+    min-height: 5rem;
+    margin-block: var(--size-fluid-2);
+  }
+}
+
+.card {
+  font-size: 4rem;
+  box-shadow: var(--shadow-4);
+  display: grid;
+  place-items: center;
+  animation: var(--animation-fade-in-bloom);
+  animation-fill-mode: backwards;
+  animation-delay: var(--animation-delay);
+}

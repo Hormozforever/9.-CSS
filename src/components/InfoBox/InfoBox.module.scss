@@ -1,0 +1,54 @@
+/* 
+CSS oder SCSS-Module müssen mit .module.scss bzw. .module.css
+enden. Sie können in Vite- oder Next-Projekten ohne weitere
+Konfiguration genutzt werden, in anderen Projekten müssen sie
+eventuell noch installiert und integriert werden. 
+
+Ein Vorteil von Modulen ist die (mögliche) Nähe von JavaScript
+und CSS ("co-location"). D.h. man kann für jede React-Komponente
+ein CSS-Modul mit dem selben Namen haben, und beide Dateien
+befinden sich im selben Ordner. So weiß man sofort, in welcher
+Datei die entsprechenden Styles stehen. Man sollte dann in 
+die CSS-Module auch nur die Styles schreiben, welche die Komponente
+betreffen. Das kann die Wiederverwendbarkeit von Komponenten
+erleichtern, weil man einfach die beiden Dateien in ein
+anderes Projekt kopieren kann.
+Ein weiterer Vorteil ist, dass die Styles nur dann geladen
+werden, wenn die Komponente verwendet wird. So vermeidet man
+u.a. unnütze Styles in CSS-Dateien, die man vergessen hat zu löschen,
+oder bei denen man nicht sicher ist, ob man sie löschen kann, weil
+nicht ganz klar ist, wieviele Komponenten sie betreffen.
+
+Dokumentation: https://github.com/css-modules/css-modules
+*/
+
+.box {
+  margin-block: var(--size-fluid-2);
+  padding: var(--size-fluid-2);
+  box-shadow: var(--shadow-5);
+  border: 2px solid var(--text-color);
+}
+
+/* CSS-Klassen in Modulen am besten in camelCase schreiben, um
+  - (Minus) im Namen zu vermeiden, damit man später in JS
+  die Punkt-Schreibweise nutzen kann, also z.B. styles.boxTitle
+  statt kompliziert styles['box-title'] */
+.boxTitle {
+  margin-block-start: 0;
+}
+
+/* Achtung: Styles, die keinen Klassen-Selektor haben,
+  werden wie ganz normales CSS behandelt und sind global gültig.
+   */
+h2 {
+  // text-transform: uppercase;
+}
+
+/* Klassennamen, die einem :global-Block stehen, werden nicht
+  verändert, haben also Auswirkung auf alle Elemente mit der
+  entsprechenden Klasse. */
+:global {
+  .main {
+    // background: var(--jungle-7);
+  }
+}

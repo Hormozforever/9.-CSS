@@ -1,0 +1,39 @@
+@use '../globals' as *;
+
+$two-columns-min: rem(450);
+$one-column: 'width < #{$two-columns-min}';
+$two-columns: 'width >= #{$two-columns-min}';
+
+/* BEM-Block */
+.teaser {
+  /*  Neue Einheit: cqw für "container query width", 1cqw entspricht
+  1% der Breite des Containers.
+  Entspricht vw (viewport width) bei normalen media queries. */
+  --fluid-space: clamp(0.5rem, 4cqw, 1.5rem);
+
+  display: grid;
+  gap: var(--fluid-space);
+  border: 2px solid var(--text-color);
+  padding: var(--fluid-space);
+
+  /* Fragt die Breite des ersten Elternelementes ab, welches
+  sich mit "container-type: inline-size;" zum Container
+  gemacht hat. */
+  @container (#{$two-columns}) {
+    grid-template-columns: auto 1fr;
+  }
+
+  /* BEM-Modifikation */
+  &--highlight {
+    background-image: var(--gradient-25);
+  }
+
+  /* BEM-Elemente */
+  &__image {
+    font-size: var(--size-12);
+  }
+
+  &__title {
+    margin-block-start: 0;
+  }
+}
